@@ -1,0 +1,50 @@
+﻿@using UserProfileApp.Models
+@model LoginViewModel
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- Display Error Message -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<h2>Login</h2>
+
+<!-- Styled Login Form -->
+<form asp-action="Login" method="post" style="border: 1px solid #ccc; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto;">
+    <fieldset>
+        <legend style="font-weight: bold; padding: 0 10px;">Login Details</legend>
+
+        <div class="form-group">
+            <label asp-for="Username"></label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group form-check">
+            <input asp-for="RememberMe" class="form-check-input" />
+            <label asp-for="RememberMe" class="form-check-label"></label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </fieldset>
+
+    <!-- Link to Forgot Password -->
+    <div class="form-group mt-3 text-center">
+        <a asp-action="ForgotPassword" asp-controller="Account">Forgot your password?</a>
+    </div>
+</form>
+
+<!-- Register link -->
+<div class="text-center mt-4">
+    <a asp-controller="Account" asp-action="Register" class="btn btn-secondary">Register</a>
+</div>
